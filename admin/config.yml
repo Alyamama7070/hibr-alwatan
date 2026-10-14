@@ -1,0 +1,29 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: assets/uploads
+public_folder: /assets/uploads
+publish_mode: editorial_workflow
+locale: ar
+direction: rtl
+
+collections:
+  - name: articles
+    label: المقالات
+    label_singular: مقال
+    folder: articles
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    extension: md
+    format: frontmatter
+    fields:
+      - { label: العنوان, name: title, widget: string }
+      - label: التصنيف
+        name: category
+        widget: select
+        options: [مرآة المجتمع, مدارات الفكر, وهج الشباب, أفق المستقبل, مداد الحرف, نبض الحياة]
+      - { label: الكاتب, name: author, widget: string }
+      - { label: تاريخ النشر, name: publishDate, widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+      - { label: الصورة الرئيسية, name: featuredImage, widget: image, choose_url: false }
+      - { label: المحتوى, name: body, widget: markdown }
